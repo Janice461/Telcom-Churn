@@ -9,7 +9,7 @@ import os
 
 # Cargar la tabla transformada
 def score_model(filename, scores):
-    df = pd.read_csv(os.path.join('../data/processed', filename)).set_index('ID')
+    df = pd.read_csv(os.path.join('../data/processed/', filename))
     print(filename, ' cargado correctamente')
     # Leemos el modelo entrenado para usarlo
     package = '../models/best_model.pkl'
@@ -24,7 +24,7 @@ def score_model(filename, scores):
 
 # Scoring desde el inicio
 def main():
-    df = score_model('credit_churn.csv','final_churn.csv')
+    df = score_model('telcom_churn.csv','final_churn.csv')
     print('Finalizó el Scoring del Modelo')
 
 

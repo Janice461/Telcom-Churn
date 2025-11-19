@@ -6,9 +6,13 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
 import os
+# from pathlib import Path
 
 # Leemos los archivos csv
 def read_file_csv(filename):
+    # notebook_dir = Path(__file__).resolve().parent
+    # data_path = notebook_dir / ".."/"data" / "raw" / filename
+    # df = pd.read_csv(data_path)
     df = pd.read_csv(os.path.join('../data/raw/', filename))
     print(filename, ' cargado correctamente')
     return df
@@ -54,7 +58,7 @@ def data_preparation(df):
 
 
 # Exportamos la matriz de datos con las columnas seleccionadas
-def data_exporting(df,  features,filename):
+def data_exporting(df, features,filename):
     dfp = df[features]
     dfp.to_csv(os.path.join('../data/processed/', filename))
     print(filename, 'exportado correctamente en la carpeta processed')
@@ -65,27 +69,27 @@ def main():
     # Matriz de Entrenamiento
     df1 = read_file_csv('churn-bigml-train.csv')
     tdf1 = data_preparation(df1)
-    data_exporting(tdf1,[['International plan', 'Voice mail plan', 'Account length',
+    data_exporting(tdf1,['International plan', 'Voice mail plan', 'Account length',
         'Number vmail messages', 'Total day minutes', 'Total day calls',
         'Total eve minutes', 'Total eve calls', 'Total night minutes',
         'Total night calls', 'Total intl minutes', 'Total intl calls',
-        'Customer service calls', 'Churn']],'telcom_train.csv')
+        'Customer service calls', 'Churn'],'telcom_train.csv')
     # Matriz de Validación
     df2 = read_file_csv('churn-bigml-test.csv')
     tdf2 = data_preparation(df2)
-    data_exporting(tdf2,[['International plan', 'Voice mail plan', 'Account length',
+    data_exporting(tdf2,['International plan', 'Voice mail plan', 'Account length',
         'Number vmail messages', 'Total day minutes', 'Total day calls',
         'Total eve minutes', 'Total eve calls', 'Total night minutes',
         'Total night calls', 'Total intl minutes', 'Total intl calls',
-        'Customer service calls', 'Churn']],'telcom_val.csv')
+        'Customer service calls', 'Churn'],'telcom_val.csv')
     # Matriz de Scoring
     df3 = read_file_csv('churn-bigml-predict.csv')
     tdf3 = data_preparation(df3)
-    data_exporting(tdf3,[['International plan', 'Voice mail plan', 'Account length',
+    data_exporting(tdf3,['International plan', 'Voice mail plan', 'Account length',
         'Number vmail messages', 'Total day minutes', 'Total day calls',
         'Total eve minutes', 'Total eve calls', 'Total night minutes',
         'Total night calls', 'Total intl minutes', 'Total intl calls',
-        'Customer service calls']], 'telcom_churn.csv')
+        'Customer service calls'], 'telcom_churn.csv')
     
 if __name__ == "__main__":
     main()
