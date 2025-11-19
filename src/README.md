@@ -27,7 +27,7 @@ git config --global user.email <CORREO>
 ### Paso 4: Clonar el Proyecto desde su propio Github
 
 ```
-git clone https://github.com/<USER>/model-credit.git
+git clone https://github.com/<USER>/Telcom-Churn.git
 ```
 
 
